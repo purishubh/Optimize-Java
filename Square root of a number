@@ -1,0 +1,30 @@
+import java.util.*;
+import java.lang.*;
+
+class Main {
+
+	 public static int solve(int A) {
+        
+        for(int i=1; i*i<=A; i++){
+            //System.out.println("check: "+i*i+", i*i == A: "+(i*i == A));
+            if(i*i == A){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int A = sc.nextInt();
+
+		int res = solve(A);
+		if(res >= 1){
+			System.out.println(res);
+		}
+		else{
+			System.out.println(-1);
+		}
+	}
+}
