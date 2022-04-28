@@ -1,0 +1,61 @@
+import java.util.*;
+import java.lang.*;
+
+class Main {
+
+	static void printArmstrongNumb(int n){
+
+		int number_of_digit = findDigit(n);
+		//System.out.println("lenght: "+number_of_digit); 
+		for(int i=0; i<=n; i++){
+			if(checArmstrong(i,number_of_digit) != -1){
+				System.out.println(i+" is a Armstrong number");
+			}
+		}
+		
+	}
+
+	static int findDigit(int A){
+
+		int tempLeng = 0;
+		while(A>0){
+			A = A/10;
+			tempLeng++;
+		} 
+		return tempLeng;
+	}
+
+	static int checArmstrong(int B, int number_of_digit){
+		//System.out.println("B: "+B+", number_of_digit: "+number_of_digit);
+		int val = B;
+		int result = 0;
+		int tempResult = 1;
+		while(val > 0){
+			int last_digit = val%10;
+			//System.out.println("last_digit: "+last_digit);
+			for(int i=0; i<number_of_digit; i++){
+				tempResult = tempResult*last_digit;
+			}
+			//System.out.println("tempResult: "+tempResult);
+			result += tempResult;
+			//System.out.println("result: "+result);
+			//System.out.println("---------------");
+			val = val/10;
+			tempResult = 1;
+		}
+		if(result == B){
+			//System.out.println(result+" is Armstrong number");
+			return result;
+		}
+		return -1;
+	}
+
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+
+		printArmstrongNumb(N);
+	}
+}
