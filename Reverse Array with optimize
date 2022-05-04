@@ -1,0 +1,38 @@
+import java.util.*;
+
+class Main {
+
+	 public static void reverseArray(int[] A) {
+		 printArray(A); // print the input array
+
+		 int aLen = A.length; // lenght of array
+		 for(int i=0; i<aLen/2; i++){ // outer loop run till half of array length
+			int temp = A[i]; // ith index value store in temp variable
+			A[i] = A[(aLen-1)-i]; // swipping value
+			A[(aLen-1)-i] = temp; // swipping value
+		}
+		printArray(A); // printing reverse array
+    }
+
+	static void printArray(int[] arr){ // print function
+
+		for(int i=0; i<arr.length; i++){ // outer loop
+			System.out.print(arr[i]+" "); // printing array list
+		}
+		System.out.println(); // printing new line
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt(); // length of an array
+		int[] arr = new int[n]; // array initialize
+		
+		for(int i=0; i<arr.length; i++){ // outer loop
+			arr[i] = sc.nextInt(); // getting array value from input
+		}
+
+
+		reverseArray(arr); //function
+	}
+}
