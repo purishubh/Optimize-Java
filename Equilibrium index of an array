@@ -1,0 +1,75 @@
+import java.util.*;
+import java.lang.*;
+
+class Main {
+
+	static int calcEquilubrium(int[] arr){
+		int[] prefixArr = calcPrefix(arr);
+		printArray(prefixArr);
+		int left;
+		int right;
+
+		for(int i=0; i<arr.length; i++){
+			// left
+			if(i == 0){
+				left = 0;
+			}
+			else{
+				left = prefixArr[i-1];
+			}
+			//System.out.print("left:"+left+", ");
+			//right
+				right = prefixArr[arr.length-1] - prefixArr[i];
+
+			if(left == right){
+				return i;
+			}
+			//System.out.print("right:"+right+", ");
+
+		} 
+		//System.out.println("count: "+);
+		//printArray(prefixArr);
+		return -1;
+	}
+
+	static int[] calcPrefix(int[] arr){
+		int arrLen = arr.length;
+		int pf[] = new int[arrLen];
+
+		for(int i=0; i<arrLen; i++){
+			if(i == 0){
+				pf[i] = arr[i];
+			}
+			else{
+				pf[i] = pf[i-1] + arr[i];
+			}
+		}
+		return pf;
+	}
+
+	static void printArray(int[] arr){
+		for(int i=0; i<arr.length; i++){
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+		for(int i=0; i<n; i++){
+			arr[i] = sc.nextInt();
+		}
+
+		int res = calcEquilubrium(arr); 
+		if(res != -1){
+			System.out.println("Got the Equilubrium on index: "+res);
+		}
+		else{
+			System.out.println("Not found Equilubrium");
+		}
+
+	}
+}
