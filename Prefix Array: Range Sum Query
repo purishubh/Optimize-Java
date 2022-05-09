@@ -1,0 +1,103 @@
+import java.util.*;
+import java.lang.*;
+
+class Main {
+	
+	static void calcRangeSumQuery(int[] A, int[][] B, int mLen){
+		int[] pf = calcPrefixArr(A, 0, A.length);
+		printArray(pf);
+
+		int r = B.length;
+		int c = B.length; // column always 2 so need to put inner loop
+		int startIndex = 0;
+		int endIndex = 0;
+		int[] resultantArr = new int[r];
+
+		for(int i=0; i<r; i++){
+			startIndex = B[i][0];
+			endIndex = B[i][1];
+			//calc(pf, startIndex, endIndex, mLen);
+			System.out.println("Check@: "+pf[startIndex]+" "+pf[endIndex]+" "+i);
+			if(i == 0){
+				resultantArr[i] = pf[endIndex-1] - 0;
+			}
+			else{
+				resultantArr[i] = pf[endIndex-1] - pf[(startIndex-1)-1];
+			}	
+		}
+		printArray(resultantArr);
+	}
+
+	static void calc(int[] pf, int si, int ei, int mLen){
+		int sum = 0;
+		int[] res = new int[2];
+		for(int i=0; i<mLen; i++){
+			//res[i] = calcPrefixArr(A,si,ei);
+			int[] pfForEachQ = calcPrefixArr(pf, si, ei);
+			printArray(pfForEachQ);
+		}
+		System.out.println("Check@: "+si+" "+ei+" "+mLen);
+		//printArray(res);
+	}
+
+	static int[] calcPrefixArr(int[] arr, int si, int ei){
+		int[] pf = new int[arr.length];
+
+		for(int i=si; i<ei; i++){
+			if(i == 0){
+				pf[i] = arr[i];
+			}
+			else{
+				pf[i] = pf[i-1] + arr[i];
+			}
+		}
+		return pf;
+	} 
+
+	static void printArray(int[] a){
+		for(int i=0; i<a.length; i++){
+			System.out.print(a[i] + " ");
+		}
+		System.out.println();
+	}
+
+	static void print2DArray(int[][] arr){
+		int r = arr.length;
+		int c = arr[0].length;
+
+		for(int i=0; i<r; i++){
+			for(int j=0; j<c; j++){
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+
+		for(int i=0; i<n; i++){
+			arr[i] = sc.nextInt(); 
+		}
+
+		int n2 = sc.nextInt(); 
+		int n3 = sc.nextInt(); // this lenght is fixed 2 given 
+		//System.out.println("check: "+n2 +" "+n3);
+		int[][] arr2 = new int[n2][n3];
+
+		for(int a=0; a<n2; a++){
+			for(int b=0; b<n3; b++){
+				arr2[a][b] = sc.nextInt();
+			}
+		}
+
+		//printArray(arr);
+		//print2DArray(arr2);
+
+		calcRangeSumQuery(arr, arr2, n2);
+
+	}
+}
