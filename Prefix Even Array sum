@@ -1,0 +1,70 @@
+import java.util.*;
+import java.lang.*;
+
+class Main {
+
+	static void calcEven(int[] arr, int si, int ei){ // function with parameter
+		//System.out.println("si:"+si+", ei:"+ei); 
+		int sumEven = Integer.MIN_VALUE; // valriable decalration to store sum of even values, initially assign minimum value
+		if(si == 0){ // check point for start index is 0 or not
+			sumEven = arr[ei] - arr[si]; // if start index 0 then it will get the first value from prefix even array
+		}
+		else{
+			sumEven = arr[ei] - arr[si-1]; // if start index is not 0 then it will get the (last index) value - (first index - 1) value from prefix even array
+		}
+		
+		System.out.println(sumEven); // Printing output
+	}
+
+	static int[] prefixEven(int[] pfArr){ //function to find prefix even function
+		int n = pfArr.length; // lenght of prefix even array
+		int[] pfEvenResult = new int[n]; // initialise new array to store the new even calculated values
+
+		pfEvenResult[0] = pfArr[0]; // to get the first index of prefixArray
+		for(int i=1; i<n; i++){ // outer loop from input array
+			if(i%2 == 0){ // check point for even
+				if(i == 0){ // check point for start index
+					pfEvenResult[i] = pfArr[i]; // if first index is 0 then it will store first index value to new prefix even array
+				}
+				else{
+					pfEvenResult[i] = pfEvenResult[i-1] + pfArr[i]; // if first is not 0 index then it will store array of i value and add prefic even array of i-1 value
+				}
+			}
+			else{
+				pfEvenResult[i] = pfEvenResult[i-1]; // we will store previous value of prefix even array value, coz we are calculating here for even
+			}
+		}
+		return pfEvenResult; // return the prepared prefix even array
+	}
+
+	static void printArray(int[] arr){ // function to print array 
+		for(int i=0; i<arr.length; i++){ // outer loop to iterate
+			System.out.print(arr[i] + " "); // print array values
+		}
+		System.out.println(); // new line
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n]; // array initialise
+
+		for(int i=0; i<n; i++){ // outer loop for getting array inputs
+			arr[i] = sc.nextInt(); // store array values
+		}
+
+		int[] pfEven = prefixEven(arr); // getting prefix even array 
+		System.out.print("Prefix of even array: "); // printing output as a string
+		printArray(pfEven); // print prefix even array values
+
+		int qLen = sc.nextInt(); // input value for q test times
+		for(int q=0; q<qLen; q++){ // outer loop for q times
+			int left = sc.nextInt(); // input for q start index
+			int right = sc.nextInt(); // input for q end index
+
+			calcEven(pfEven, left, right); // calling function to get the sum of even values for q index range
+		}
+		
+	}
+}
