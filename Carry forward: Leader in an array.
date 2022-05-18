@@ -1,0 +1,32 @@
+import java.util.*;
+import java.lang.*;
+
+class Main {
+
+	static void findLeaserArrayCount(int[] arr){
+		int n = arr.length; // lenght of array
+		int count = 1; // count 1 coz last index is alwahys leader given note in question
+		int max = arr[n-1]; // last value stored in max
+
+		for(int i=n-2; i>=0; i--){ // loop from n-1 to 0 (right to left)
+			if(arr[i] > max){ // if arr[i] is greater than max
+				max = arr[i]; // max update
+				count++; // count incremented
+			}
+		}
+		System.out.println("count:"+count); // print ouput count value
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+
+		for(int i=0; i<n; i++){
+			arr[i] = sc.nextInt();
+		}
+
+		findLeaserArrayCount(arr);
+	}
+}
