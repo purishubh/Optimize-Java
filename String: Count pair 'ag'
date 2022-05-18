@@ -1,0 +1,32 @@
+import java.util.*;
+import java.lang.*;
+
+class Main {
+
+	static void findCount(String s, String fs){
+		int n = s.length(); //length of string
+		char[] str = s.toCharArray(); // convert string to character array
+		int count = 0; // count variable initialize with 0.
+		int ans = 0; // ans variable initialize with 0.
+
+		for(int i=n-1; i>=0; i--){ // loop
+			if(str[i] == 'g'){ // check point for g character
+				count++; // count incremented
+			}
+			if(str[i] == 'a'){ // check point for a character
+				ans += count; // adding count value to ans variable
+			}	
+		}
+		System.out.println("ans:"+ans);
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+		String findChar = sc.next();
+
+
+		findCount(str, findChar);
+	}
+}
