@@ -1,0 +1,33 @@
+import java.util.*;
+import java.lang.*;
+
+class Main {
+
+	static void findCount(String s, String fs){
+		int n = s.length();
+		char[] str = s.toCharArray();
+		//System.out.println("String:"+str+", findChar:"+fs);	
+		int count = 0;
+		int ans = 0;
+
+		for(int i=0; i<n; i++){
+			if(str[i] == 'g'){
+				ans += count; 
+			}
+			if(str[i] == 'a'){
+				count++;
+			}	
+		}
+		System.out.println("ans:"+ans);
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+		String findChar = sc.next();
+
+
+		findCount(str, findChar);
+	}
+}
