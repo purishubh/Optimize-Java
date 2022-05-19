@@ -1,0 +1,53 @@
+import java.util.*;
+import java.lang.*;
+
+class Main {
+
+	static void calc(int[] arr, int k){
+		int n = arr.length;
+		int[] pf = prefixArray(arr);
+		int si = 0;
+		int ei = k-1; // end index lenght of k initislly
+		int sum = 0; // store each time subarray sum
+		int maxSumOfSubArray = Integer.MIN_VALUE; // store maximum value of sub array
+
+		while(ei<n){
+			if(si == 0){ // condition check if start index is 0 then first prefix value
+				sum = pf[si];
+			}
+			else{
+				sum = pf[ei] - pf[si-1];
+			}
+			//System.out.println(si+", "+ei+", sum:"+sum);
+			si++;
+			ei++;
+
+			maxSumOfSubArray = Math.max(maxSumOfSubArray, sum);
+		}
+		System.out.println("Maximum Sum Of SubArray:"+maxSumOfSubArray);
+	}
+
+	static int[] prefixArray(int[] arr){ // find prefix array
+		int n = arr.length;
+		int[] pf = new int[n];
+		pf[0] = arr[0];
+		for(int i=1; i<n; i++){
+			pf[i] = pf[i-1] + arr[i];
+		}
+		return pf;
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+		for(int i=0; i<n; i++){
+			arr[i] = sc.nextInt();
+		}
+
+		int k = sc.nextInt();
+
+		calc(arr, k);
+	}
+}
