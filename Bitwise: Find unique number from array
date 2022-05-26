@@ -1,0 +1,28 @@
+import java.lang.*;
+import java.util.*;
+
+class Main {
+
+	static void findUnique(int[] arr){
+		int ans = 0;
+
+		for(int i=0; i<arr.length; i++){ // loop on array
+			ans = ans ^ arr[i]; // we use here XOR, we use XOR property here a^a=0, a^0=a.
+		}
+
+		System.out.println("Unique value from array: "+ans);
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+
+		for(int i=0; i<n; i++){
+			arr[i] = sc.nextInt();
+		}
+
+		findUnique(arr);
+	}
+}
