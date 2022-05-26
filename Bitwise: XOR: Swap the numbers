@@ -1,0 +1,25 @@
+import java.lang.*;
+import java.util.*;
+
+class Main {
+
+	static void swapUsingXOR(int a, int b){
+		
+		a = a ^ b;
+		b = b ^ a; // b = b^(a^b) = b^a^b = a (b^b got 0 with XOR property)
+
+		a = a ^ b; // a = (a^b)^a = a^b^a = b (a^a got 0 and 0^b=b)
+    // Note: basically here using XOR property we are swapping the numbers, just concentrate the commneted code throughly we will get the logic 
+    
+		System.out.println("a:"+a+", b:"+b);
+	}
+
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int n1 = sc.nextInt();
+		int n2 = sc.nextInt();
+
+		swapUsingXOR(n1, n2);
+	}
+}
